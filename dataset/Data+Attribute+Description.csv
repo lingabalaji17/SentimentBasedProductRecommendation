@@ -1,0 +1,16 @@
+Attribute,Attribute Description
+id,Uniques identity number to identify each unique review given by the user to a particular product in the dataset
+brand,Name of the brand of the product to which user has given review and rating
+categories,"Category of the product like household essentials, books, personal care products, medicines, cosmetic items, beauty products, electrical appliances, kitchen and dining products, health care products and many more."
+manufacturer,Name of the manufacturer of the product
+name,Name of the product to which user has added review or rating
+reviews_date,Date on which the review has been added by the user
+reviews_didPurchase,Whether a particular user has purchased the product or not
+reviews_doRecommend,Whether a particular user has recommended the product or not
+reviews_rating,Rating given by the user to a particular product
+reviews_text,Review given by the user to a particular product
+reviews_title,The title of the review given by the user to a particular product
+reviews_userCity,The residing city of the user
+reviews_userProvince,The residing province of the user
+reviews_username,The unique identification for individual user in the dataset
+user_sentiment,The overall sentiment of the user for a particular product (Positive or Negative)
