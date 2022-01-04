@@ -1,1 +1,21 @@
-THIS IS A SAMPLE PAGE.
+<html>
+    <head>
+    <title>Sentiment Based Product Recommendation</title>
+    </head>
+
+    <body>
+        <form method="post" action="/predict">
+            <input type="text" name ="userId" placeholder="Enter a User ID" />
+            <input type="submit" value="submit" />
+        </form>
+        {% if data %}
+        <table border="1">
+            {% for v in data %}
+            <tr>
+                <td>{{v}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </body>
+</html>
