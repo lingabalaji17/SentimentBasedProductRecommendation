@@ -1,0 +1,86 @@
+body{
+	font:15px/1.5 Arial, Helvetica,sans-serif;
+	padding: 0px;
+	background-color:#f4f3f3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container{
+	width:100%;
+	margin: auto;
+	overflow: hidden;
+}
+
+#recommendation-continer 
+{
+    width: 1000px;
+    margin: 0 auto;
+    height:100%;
+}
+
+.main-header{
+    text-align:center;
+    background-color: blue;
+    height:100px;
+    width:100%;
+    margin:0px;
+}
+
+#brandname{
+	float:left;
+	font-size:30px;
+	margin: 10px;
+}
+
+header h1{
+	text-align:center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header{
+    background-color: lightseagreen;
+}
+
+#recommendation-continer textarea {
+    width: 1000px;
+    border: 1px solid lightseagreen;
+    border-radius: 8px;
+}
+
+.btn-primary {
+    background-color: lightseagreen;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    float: right;
+} /* Blue */
+.btn-info:hover {background: #0b7dda;}
+
+
+.results{
+	border-radius: 15px 50px;
+    background: #345fe4;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;
+}
+
+.recommendation-grid{
+    border: 1px solid lightseagreen;
+    padding: 10px;
+    color: lightseagreen;
+    width: 500 px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.search-box{
+    border-radius: 4px;
+    border: 2px solid lightseagreen;
+    height: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -1,21 +1,55 @@
 <html>
     <head>
     <title>Sentiment Based Product Recommendation</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     </head>
 
     <body>
-        <form method="post" action="/predict">
-            <input type="text" name ="userId" placeholder="Enter a User ID" />
-            <input type="submit" value="submit" />
-        </form>
-        {% if data %}
-        <table border="1">
-            {% for v in data %}
-            <tr>
-                <td>{{v}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
+        <header>
+            <div class="container">
+            <h1>Sentiment Based Product Recommendation</h1>
+        </div>
+        </header>
+        <div id="recommendation-continer">
+            <form method="post" action="/predictSentiment">
+                <p>Enter Your Review Comment Here</p>
+                <textarea name="review_text" rows="4" cols="50" ></textarea>
+                <br>
+                <input type="submit" value="Predict Sentiment!" class="btn-primary" />
+                
+                <div>
+                    {% if sentiment == 1%}
+                    <h2 style="color:green;">POSITIVE!!</h2>
+                    {% elif sentiment == 0%}
+                    <h2 style="color:red;">NEGATIVE !!</h2>
+                    {% endif %}
+                </div>
+            </form>
+            <form method="post" action="/predict" style="margin-top: 50px;">
+                <input type="text" name ="userId" placeholder="Enter a User ID" class="search-box"/>
+                <br>
+                <input type="submit" value="Recommend Products!!" class="btn-primary"/>
+            
+            {% if data %}
+            <table class="recommendation-grid">
+                {% for v in data %}
+                <th>
+                    <!--<td>Product ID</td>-->
+                    <!--<td>Product Name</td>-->
+                </th>
+                <tr>
+                    <!--<td>{{v.ProductID}}</td>-->
+                    <td>{{v}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% if data.message %}
+            <p style="color: red;">{{data.message}}</p>
+            {% endif %}
+            {% endif %}
+          
+            </form>
+        </div>
+       
     </body>
 </html>
