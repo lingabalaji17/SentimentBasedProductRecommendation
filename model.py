@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import re
 import string
+import nltk
+nltk.download('stopwords')
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem.wordnet import WordNetLemmatizer
