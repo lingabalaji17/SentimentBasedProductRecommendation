@@ -1,55 +1,135 @@
-<html>
-    <head>
-    <title>Sentiment Based Product Recommendation</title>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <body>
-        <header>
-            <div class="container">
-            <h1>Sentiment Based Product Recommendation</h1>
-        </div>
-        </header>
-        <div id="recommendation-continer">
-            <form method="post" action="/predictSentiment">
-                <p>Enter Your Review Comment Here</p>
-                <textarea name="review_text" rows="4" cols="50" ></textarea>
-                <br>
-                <input type="submit" value="Predict Sentiment!" class="btn-primary" />
-                
-                <div>
-                    {% if sentiment == 1%}
-                    <h2 style="color:green;">POSITIVE!!</h2>
-                    {% elif sentiment == 0%}
-                    <h2 style="color:red;">NEGATIVE !!</h2>
-                    {% endif %}
-                </div>
-            </form>
-            <form method="post" action="/predict" style="margin-top: 50px;">
-                <input type="text" name ="userId" placeholder="Enter a User ID" class="search-box"/>
-                <br>
-                <input type="submit" value="Recommend Products!!" class="btn-primary"/>
-            
-            {% if data %}
-            <table class="recommendation-grid">
-                {% for v in data %}
-                <th>
-                    <!--<td>Product ID</td>-->
-                    <!--<td>Product Name</td>-->
-                </th>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title>Sentiment Based Product Recommendation</title>
+  </head>
+
+  <body>
+    <nav class="navbar fixed-top navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          >Sentiment Product Recommendation System</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top: 70px">
+      <form action="/predict" method="post">
+        <div class="row vstack gap-3">
+          <div class="row">
+            <div class="col-sm-5">
+              <input
+                class="form-control"
+                type="text"
+                id="userName"
+                name="userName"
+                placeholder="Enter UserName to search..."
+              />
+              <p>
+                <small>Enter usernames like "02dakota", "123charlie", "08dallas" etc. </small>
+              </p>
+            </div>
+            <div class="col-sm-2">
+              <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+          </div>
+          <div class="row">
+            {% if row_data %}
+            <table class="table table-striped table-hover">
+              <caption>
+                List of Top 5 Recommended Products
+              </caption>
+              <thead>
                 <tr>
-                    <!--<td>{{v.ProductID}}</td>-->
-                    <td>{{v}}</td>
+                  <td>Product Name</td>
+                  <td>Brand</td>
+                  <td>Manufacturer</td>
+                  <td>Recommedation %</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in row_data %}
+                <tr>
+                  {% for col, row_ in zip(column_names, row) %}
+                  <td>{{row_}}</td>
+                  {% endfor %}
                 </tr>
                 {% endfor %}
+              </tbody>
             </table>
-            {% if data.message %}
-            <p style="color: red;">{{data.message}}</p>
             {% endif %}
+          </div>
+          <div class="row">
+            {% if message%}
+            <div class="alert alert-danger" role="alert">{{message}}</div>
             {% endif %}
-          
-            </form>
+          </div>
         </div>
-       
-    </body>
+      </form>
+
+      <form method="post" action="/predictSentiment">
+        <div class="row vstack gap-3">
+          <div class="row">
+            <label for="reviewText" class="form-label"
+              >Enter your Review here</label
+            >
+            <textarea
+              class="form-control"
+              name="reviewText"
+              rows="3"
+              id="reviewText"
+            ></textarea>
+          </div>
+          <div class="row">
+            <div class="col align-self-end">
+              <input
+                type="submit"
+                class="btn btn-primary float-end"
+                value="Predict Sentiment"
+              />
+            </div>
+          </div>
+          <div class="row">
+            {% if sentiment == 1%}
+            <div class="alert alert-success" role="alert">
+              Entered Review Text is predicted to be Positive
+            </div>
+            {% elif sentiment == 0%}
+            <div class="alert alert-danger" role="alert">
+              Entered Review Text is predicted to be Negative
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3 bg-light">
+      Created by LingaBalaji J, 2022
+    </div>
+    <!-- Copyright -->
+  </footer>
 </html>
