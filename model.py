@@ -66,7 +66,7 @@ class SentimentRecommenderModel:
                 temp_grouped["pos_review_count"]/temp_grouped["total_review_count"]*100, 2)
             sorted_products = temp_grouped.sort_values(
                 'pos_sentiment_percent', ascending=False)[0:5]
-            return pd.merge(self.data, sorted_products, on="id")[["name", "brand", "manufacturer", "pos_sentiment_percent"]].drop_duplicates().sort_values('pos_sentiment_percent', ascending=False)
+            return pd.merge(self.data, sorted_products, on="id")[["name", "brand", "manufacturer", "pos_sentiment_percent"]].drop_duplicates().sort_values(['pos_sentiment_percent', 'name'], ascending=[False, True])
 
         else:
             print(f"User name {user} doesn't exist")
@@ -92,9 +92,7 @@ class SentimentRecommenderModel:
         text = re.sub("\S*\d\S*", "", text)
 
         # remove stop-words and convert it to lemma
-        #text = self.lemma_text(text)
-        # remove stop-words
-        text = self.remove_stopword(text)
+        text = self.lemma_text(text)
         return text
 
     """function to get the pos tag to derive the lemma form"""
